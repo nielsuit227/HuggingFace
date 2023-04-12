@@ -3,13 +3,12 @@ import torch
 from dataloader import load_data
 from transformers import AutoModelForSequenceClassification
 
-_, test_loader = load_data("data/first.csv")
+model = AutoModelForSequenceClassification.from_pretrained("models/distilbert_v1")
+
 
 # Load metric
+_, test_loader = load_data("data/cleaned.csv")
 metric = evaluate.load("accuracy")
-model = AutoModelForSequenceClassification.from_pretrained(
-    "HuggingFace/whatsapp_classifier/models/distilbert_v1"
-)
 
 # Iteratively evaluate the model and compute metrics
 model.eval()

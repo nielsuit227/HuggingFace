@@ -8,7 +8,7 @@ from transformers import AutoModelForSequenceClassification
 
 load_dotenv()
 
-train_loader, test_loader = load_data("data/first.csv")
+train_loader, test_loader = load_data("data/cleaned.csv")
 
 # Load model from checkpoint
 model = AutoModelForSequenceClassification.from_pretrained(
@@ -39,4 +39,4 @@ for epoch in range(num_epochs):
         progress_bar.update(1)
 
 # Save model to disk
-model.save_pretrained("HuggingFace/whatsapp_classifier/models/distilbert_v1")
+model.save_pretrained("models/distilbert_v1")

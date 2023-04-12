@@ -1,20 +1,12 @@
-import os
-
 import pandas as pd
 
 
 def load_data() -> list[str]:
     """Loads data from data/training folder"""
     path = "data/_chat.txt"
-    path = path if os.path.exists(path) else "HuggingFace/whatsapp_classifier/" + path
     with open(path, "r") as f:
         data = f.read()
     return data.split("\n")
-
-
-def store(df: pd.DataFrame, path: str):
-    path = path if os.path.exists(path) else "HuggingFace/whatsapp_classifier/" + path
-    df.to_csv(path, index=False)
 
 
 def merge_rows(data: list[str]) -> list[str]:
@@ -55,4 +47,4 @@ def label_rows(data: list[str]) -> pd.DataFrame:
 rows = load_data()
 rows = [r for r in rows if "\u200e" not in r]
 rows = merge_rows(rows)
-store(label_rows(rows), "data/cleaned.csv")
+label_rows(rows).to_csv("data/cleaned.csv", index=False)

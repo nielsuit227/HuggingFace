@@ -11,12 +11,6 @@ load_dotenv()
 tokenizer = AutoTokenizer.from_pretrained(os.getenv("llm", "distilbert-base-uncased"))
 
 
-def load_df(path: str) -> pd.DataFrame:
-    """Loads data from data/training folder"""
-    path = path if os.path.exists(path) else "HuggingFace/whatsapp_classifier/" + path
-    return pd.read_csv(path)
-
-
 def tokenize(batch):
     tokenized_batch = tokenizer(
         batch["text"], padding=True, truncation=True, max_length=128
@@ -37,7 +31,7 @@ def load_data(path: str) -> Dataset:
     -------
     df : pd.DataFrame
     """
-    df = load_df(path)
+    df = pd.read_csv(path)
 
     data = Dataset.from_pandas(df)
     data = data.train_test_split(test_size=0.2)

@@ -7,6 +7,8 @@ Based on a whatsapp conversation, the scripts here finetune DistilBert for the c
 3. Run `finetune.py`
 4. Run `eval.py`
 
+> One can also import the `predict_on_input` function from `eval.py`, to see the prediction on any arbitrary text input. 
+
 ## Data
 In WhatsApp, you can export a conversation. Given the single modularity, please do so without attachments. You can store this in `/data/_chat.txt`. No further edits have to be made :) 
 
